@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
-import { Button, Text } from 'react-native';
+import { Button, View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { NavigatorScreenParams } from '@react-navigation/native';
@@ -10,7 +10,7 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import AuthStack from './AuthStack';
-import { SignInScreen, SignUpScreen } from '../screens';
+import { Home, SignUpScreen } from '../screens';
 import TabBar from './tab-bar'
 const Tab = createBottomTabNavigator()
 const transitionPresets = TransitionPresets.SlideFromRightIOS
@@ -20,35 +20,42 @@ function BottomTabNavigator() {
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
         iconName = focused
-          ? 'person'
-          : 'ios-information-circle-outline';
+          ? 'heart'
+          : 'md-musical-note';
         return <Ionicons name={iconName} size={size} color={color} />;
       },
-      tabBarActiveTintColor: 'skyblue',
+      tabBarActiveTintColor: '#396545',
       tabBarInactiveTintColor: 'gray',
     })}
   >
-      <Tab.Screen name='邀请函' component={AuthStack}
+      <Tab.Screen name='邀请函' component={Home}
          options={{
           headerStyle: {
-            backgroundColor: 'skyblue',
+            backgroundColor: '#396545',
+            borderColor: 'transparent',
+            shadowColor: 'transparent'
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          headerTitleAlign: "center",
           headerRight: () => (
-            <Ionicons
-              name="ios-list"
-              color="white"
-              size={28}
+            <View style={{
+              width: 30,
+              height: 30,
+              borderColor: 'white'
+            }}>
+              <Ionicons
+              name="md-musical-note"
               onPress={() => alert('This is a button!')}
+              color="#fff"
             />
+            </View>
           ),
+          headerTitleAlign: "center",
         }}/>
-      <Tab.Screen name='相册' component={SignUpScreen} />
-      <Tab.Screen name='导航' component={SignUpScreen} />
+      <Tab.Screen name='地址导航' component={Home} />
+      <Tab.Screen name='联系我们' component={SignUpScreen} />
     </Tab.Navigator>
   )
 }
