@@ -10,7 +10,7 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import AuthStack from './AuthStack';
-import { Home, SignUpScreen } from '../screens';
+import { Home, Address, Contact } from '../screens';
 import TabBar from './tab-bar'
 const Tab = createBottomTabNavigator()
 const transitionPresets = TransitionPresets.SlideFromRightIOS
@@ -54,8 +54,8 @@ function BottomTabNavigator() {
           ),
           headerTitleAlign: "center",
         }}/>
-      <Tab.Screen name='地址导航' component={Home} />
-      <Tab.Screen name='联系我们' component={SignUpScreen} />
+      <Tab.Screen name='地址导航' component={Address} />
+      <Tab.Screen name='联系我们' component={Contact} />
     </Tab.Navigator>
   )
 }
